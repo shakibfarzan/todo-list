@@ -1,10 +1,8 @@
 import React from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <></>
-  );
+function App(): React.ReactElement {
+  return <></>;
 }
 
 export default App;
