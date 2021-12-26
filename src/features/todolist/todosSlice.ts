@@ -31,4 +31,13 @@ const todosSlice: Slice = createSlice({
   },
 });
 
+export const getUnDoneTodos = createSelector(
+  (state: RootState) => state,
+  (todos) => todos.filter((todo: TodoType) => todo.status !== 'done'),
+);
+
+export const getDoneTodos = createSelector(
+  (state: RootState) => state,
+  (todos) => todos.filter((todo: TodoType) => todos.status === 'done'),
+);
 export default todosSlice;
