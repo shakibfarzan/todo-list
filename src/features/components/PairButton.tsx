@@ -3,7 +3,7 @@ import React from 'react';
 const PairButton = (): React.ReactElement => {
   return (
     <div className="inline-flex">
-      <button>
+      <button className="p-2 hover:bg-blue-100 rounded-full">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           enableBackground="new 0 0 24 24"
@@ -27,7 +27,7 @@ const PairButton = (): React.ReactElement => {
           </g>
         </svg>
       </button>
-      <button>
+      <button className="p-2 hover:bg-red-100 rounded-full">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24px"
