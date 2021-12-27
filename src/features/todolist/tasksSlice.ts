@@ -32,12 +32,12 @@ const taskSlice: Slice = createSlice({
 });
 
 export const getUnDoneTasks = createSelector(
-  (state: RootState) => state,
+  (state: RootState) => state.tasks,
   (tasks) => tasks.filter((task: TaskType) => task.status !== 'done'),
 );
 
 export const getDoneTasks = createSelector(
-  (state: RootState) => state,
-  (tasks) => tasks.filter((task: TaskType) => tasks.status === 'done'),
+  (state: RootState) => state.tasks,
+  (tasks) => tasks.filter((task: TaskType) => task.status === 'done'),
 );
-export default taskSlice;
+export default taskSlice.reducer;

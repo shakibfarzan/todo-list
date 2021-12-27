@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import TodoList from './features/todolist/TodoList';
-import MyTabs from './features/components/MyTabs';
 import AddButton from './features/components/AddButton';
 
 function App(): React.ReactElement {
@@ -9,12 +8,7 @@ function App(): React.ReactElement {
     <>
       <div className="flex flex-col mx-4 my-10">
         <AddButton />
-        <MyTabs
-          items={[
-            { id: 1, title: 'To Do', content: <TodoList /> },
-            { id: 2, title: 'Done Tasks', content: <TodoList /> },
-          ]}
-        />
+        <TodoList />
       </div>
     </>
   );
