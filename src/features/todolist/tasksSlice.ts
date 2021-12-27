@@ -6,38 +6,38 @@ import {
 } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 
-export interface TodoType {
+export interface TaskType {
   id: number;
-  task: string;
+  title: string;
   status: 'paused' | 'in progress' | 'done';
   date: Date;
   time: Date;
 }
 
-const initialState: TodoType[] = [];
+const initialState: TaskType[] = [];
 
 let lastId = 0;
 
-const todosSlice: Slice = createSlice({
-  name: 'todos',
+const taskSlice: Slice = createSlice({
+  name: 'tasks',
   initialState,
   reducers: {
     taskAdded: (
       state,
-      action: PayloadAction<Omit<TodoType, 'time' | 'id'>>,
+      action: PayloadAction<Omit<TaskType, 'time' | 'id'>>,
     ) => {
       state.push({ id: lastId++, time: Date.now(), ...action.payload });
     },
   },
 });
 
-export const getUnDoneTodos = createSelector(
+export const getUnDoneTasks = createSelector(
   (state: RootState) => state,
-  (todos) => todos.filter((todo: TodoType) => todo.status !== 'done'),
+  (tasks) => tasks.filter((task: TaskType) => task.status !== 'done'),
 );
 
-export const getDoneTodos = createSelector(
+export const getDoneTasks = createSelector(
   (state: RootState) => state,
-  (todos) => todos.filter((todo: TodoType) => todos.status === 'done'),
+  (tasks) => tasks.filter((task: TaskType) => tasks.status === 'done'),
 );
-export default todosSlice;
+export default taskSlice;
