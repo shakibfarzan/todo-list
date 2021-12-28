@@ -13,11 +13,15 @@
     "@types/react": "^16.14.21",
     "@types/react-dom": "^16.9.14",
     "@types/react-redux": "^7.1.21",
+    "moment": "^2.29.1",
     "postcss-cli": "^9.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-modal": "^3.14.4",
     "react-redux": "^7.2.6",
+    "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
+    "react-tabs": "^3.2.3",
     "typescript": "^4.1.6"
   },
   "scripts": {
@@ -44,6 +48,8 @@
   },
   "devDependencies": {
     "@types/prettier": "^2.4.2",
+    "@types/react-modal": "^3.13.1",
+    "@types/react-tabs": "^2.3.4",
     "@typescript-eslint/eslint-plugin": "^5.8.0",
     "autoprefixer": "^10.4.0",
     "eslint": "^8.5.0",

@@ -4,10 +4,11 @@ import TodoList from './features/todolist/TodoList';
 
 function App(): React.ReactElement {
   return (
-    <div className="flex flex-col my-10 mx-4">
-      <h1 className="text-center text-red-500 text-xl">Hello</h1>
-      <TodoList />
-    </div>
+    <>
+      <div className="flex flex-col mx-4 my-10">
+        <TodoList />
+      </div>
+    </>
   );
 }
 

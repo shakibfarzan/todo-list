@@ -6,22 +6,19 @@ interface Props {
 }
 
 function Badge({ content, mode }: Props): ReactElement {
-  let color = '';
+  let className = '';
   if (mode === 'primary') {
-    color = 'blue';
+    className =
+      'px-3 py-2 text-sm font-bold text-gray-100 bg-blue-500 rounded-full';
   } else if (mode === 'success') {
-    color = 'green';
+    className =
+      'px-3 py-2 text-sm font-bold text-gray-100 bg-green-500 rounded-full';
   } else if (mode === 'warning') {
-    color = 'yellow';
+    className =
+      'px-3 py-2 text-sm font-bold text-gray-100 bg-yellow-500 rounded-full';
   }
 
-  return (
-    <span
-      className={`bg-${color}-500 py-2 px-3 rounded-full text-gray-100 font-bold text-sm`}
-    >
-      {content}
-    </span>
-  );
+  return <span className={className}>{content}</span>;
 }
 
 export default Badge;
