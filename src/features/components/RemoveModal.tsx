@@ -4,6 +4,7 @@ interface Props {
   isOpen: boolean;
   closeModal: React.MouseEventHandler;
   onRemove: React.MouseEventHandler;
+  taskTitle: string;
 }
 
 const customStyles = {
@@ -21,6 +22,7 @@ const RemoveModal = ({
   isOpen,
   closeModal,
   onRemove,
+  taskTitle,
 }: Props): React.ReactElement => {
   return (
     <Modal
@@ -45,9 +47,13 @@ const RemoveModal = ({
             <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
           </svg>
         </button>
-        <h2 className="text-xl font-semibold text-slate-900">
+        <h2 className="mb-6 text-xl font-semibold text-slate-900">
           Are you sure to remove this task?
         </h2>
+        <p className="mb-12 text-base font-bold text-slate-900">
+          <span className="font-normal text-slate-700">Task: </span>
+          {taskTitle}
+        </p>
         <button
           onClick={onRemove}
           className="px-4 py-2 text-sm font-semibold text-white transition bg-red-500 rounded-md hover:bg-red-600 hover:shadow-md hover:shadow-red-400"

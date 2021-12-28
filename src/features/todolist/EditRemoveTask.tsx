@@ -138,6 +138,7 @@ const EditRemoveTask = ({ id }: Props): React.ReactElement => {
         isOpen={isRemoveModalOpen}
         closeModal={closeRemoveModal}
         onRemove={onRemove}
+        taskTitle={formData.title}
       />
     </>
   );
