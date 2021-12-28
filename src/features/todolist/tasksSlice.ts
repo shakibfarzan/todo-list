@@ -39,6 +39,14 @@ const taskSlice: Slice = createSlice({
       );
       state.splice(index, 1);
     },
+    taskStatusToggled: (state, action: PayloadAction<Pick<TaskType, 'id'>>) => {
+      const index = state.findIndex(
+        (task: TaskType) => task.id === action.payload.id,
+      );
+      state[index].status === 'Done'
+        ? (state[index].status = 'In Progress')
+        : (state[index].status = 'Done');
+    },
   },
 });
 
@@ -58,6 +66,7 @@ export const getTaskById = (taskId: number): Selector<RootState, TaskType> =>
     (tasks) => tasks.find((task: TaskType) => task.id === taskId),
   );
 
-export const { taskAdded, taskRemoved, taskEdited } = taskSlice.actions;
+export const { taskAdded, taskRemoved, taskEdited, taskStatusToggled } =
+  taskSlice.actions;
 
 export default taskSlice.reducer;
