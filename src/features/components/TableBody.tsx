@@ -1,5 +1,5 @@
 import React from 'react';
-import PairButton from './PairButton';
+import EditRemoveTask from '../todolist/EditRemoveTask';
 import Badge from './Badge';
 import { TaskType } from '../todolist/tasksSlice';
 import moment from 'moment';
@@ -42,7 +42,7 @@ const TableBody = ({ tasks }: Props): React.ReactElement => {
             {moment(task.date).format('LT')}
           </td>
           <td className="px-1 py-6 text-center">
-            <PairButton id={task.id} />
+            <EditRemoveTask id={task.id} />
           </td>
         </tr>
       ))}

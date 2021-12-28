@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import AddButton from '../components/AddButton';
-import { TaskType, taskAdded } from '../todolist/tasksSlice';
+import { TaskType, taskAdded } from './tasksSlice';
 import { useDispatch } from 'react-redux';
-import MyModal from '../components/MyModal';
+import AddEditModal from '../components/AddEditModal';
 
 const AddTask = (): React.ReactElement => {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,7 +54,7 @@ const AddTask = (): React.ReactElement => {
   return (
     <>
       <AddButton onClick={openModal} />
-      <MyModal
+      <AddEditModal
         isOpen={isOpen}
         closeModal={closeModal}
         handleChange={handleChange}

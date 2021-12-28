@@ -27,7 +27,7 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-const MyModal = ({
+const AddEditModal = ({
   isOpen,
   closeModal,
   handleChange,
@@ -102,4 +102,4 @@ const MyModal = ({
   );
 };
 
-export default MyModal;
+export default AddEditModal;

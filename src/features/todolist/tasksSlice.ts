@@ -58,6 +58,6 @@ export const getTaskById = (taskId: number): Selector<RootState, TaskType> =>
     (tasks) => tasks.find((task: TaskType) => task.id === taskId),
   );
 
-export const { taskAdded } = taskSlice.actions;
+export const { taskAdded, taskRemoved, taskEdited } = taskSlice.actions;
 
 export default taskSlice.reducer;
