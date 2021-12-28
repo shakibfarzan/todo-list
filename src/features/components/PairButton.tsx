@@ -7,7 +7,7 @@ interface Props {
 const PairButton = ({ id }: Props): React.ReactElement => {
   return (
     <div key={id} className="inline-flex">
-      <button className="p-2 rounded-full hover:bg-blue-100">
+      <button className="p-2 transition rounded-full hover:bg-blue-100">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           enableBackground="new 0 0 24 24"
@@ -31,7 +31,7 @@ const PairButton = ({ id }: Props): React.ReactElement => {
           </g>
         </svg>
       </button>
-      <button className="p-2 rounded-full hover:bg-red-100">
+      <button className="p-2 transition rounded-full hover:bg-red-100">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24px"
