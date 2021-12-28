@@ -9,9 +9,8 @@ import { RootState } from '../../app/store';
 export interface TaskType {
   id: number;
   title: string;
-  status: 'paused' | 'in progress' | 'done';
+  status: 'Paused' | 'In Progress' | 'Done';
   date: Date;
-  time: Date;
 }
 
 const initialState: TaskType[] = [];
@@ -22,22 +21,22 @@ const taskSlice: Slice = createSlice({
   name: 'tasks',
   initialState,
   reducers: {
-    taskAdded: (
-      state,
-      action: PayloadAction<Omit<TaskType, 'time' | 'id'>>,
-    ) => {
-      state.push({ id: lastId++, time: Date.now(), ...action.payload });
+    taskAdded: (state, action: PayloadAction<Omit<TaskType, 'id'>>) => {
+      state.push({ id: lastId++, ...action.payload });
     },
   },
 });
 
 export const getUnDoneTasks = createSelector(
   (state: RootState) => state.tasks,
-  (tasks) => tasks.filter((task: TaskType) => task.status !== 'done'),
+  (tasks) => tasks.filter((task: TaskType) => task.status !== 'Done'),
 );
 
 export const getDoneTasks = createSelector(
   (state: RootState) => state.tasks,
-  (tasks) => tasks.filter((task: TaskType) => task.status === 'done'),
+  (tasks) => tasks.filter((task: TaskType) => task.status === 'Done'),
 );
+
+export const { taskAdded } = taskSlice.actions;
+
 export default taskSlice.reducer;

@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 
-const AddButton = (): React.ReactElement => {
+interface Props {
+  onClick: MouseEventHandler<HTMLButtonElement>;
+}
+
+const AddButton = ({ onClick }: Props): React.ReactElement => {
   return (
-    <button className="self-end py-2 pl-3 pr-6 text-white transition bg-blue-500 rounded-md w-max hover:bg-blue-600 hover:shadow-md hover:shadow-blue-400">
+    <button
+      onClick={onClick}
+      className="self-end py-2 pl-3 pr-6 text-white transition bg-blue-500 rounded-md w-max hover:bg-blue-600 hover:shadow-md hover:shadow-blue-400"
+    >
       <div className="flex flex-row items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"

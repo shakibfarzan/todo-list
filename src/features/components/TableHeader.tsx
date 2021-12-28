@@ -15,7 +15,7 @@ const TableHeader = ({ columns }: Props): React.ReactElement => {
       <tr>
         {columns.map((column) => (
           <th key={column.id} className="py-3 font-semibold text-gray-500">
-            {column}
+            {column.title}
           </th>
         ))}
       </tr>

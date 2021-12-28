@@ -2,6 +2,7 @@ import React from 'react';
 import PairButton from './PairButton';
 import Badge from './Badge';
 import { TaskType } from '../todolist/tasksSlice';
+import moment from 'moment';
 
 interface Props {
   tasks: TaskType[];
@@ -10,11 +11,11 @@ interface Props {
 const TableBody = ({ tasks }: Props): React.ReactElement => {
   const renderBadge = (status: string): React.ReactElement | null => {
     switch (status) {
-      case 'done':
+      case 'Done':
         return <Badge content={'Done'} mode={'success'} />;
-      case 'paused':
+      case 'Paused':
         return <Badge content={'Paused'} mode={'warning'} />;
-      case 'in progress':
+      case 'In Progress':
         return <Badge content={'In Progress'} mode={'primary'} />;
     }
     return null;
@@ -35,10 +36,10 @@ const TableBody = ({ tasks }: Props): React.ReactElement => {
           <td className="px-1 py-6 font-semibold text-center">{task.title}</td>
           <td className="px-1 py-6 text-center">{renderBadge(task.status)}</td>
           <td className="px-1 py-6 font-semibold text-center">
-            {task.date.toUTCString()}
+            {moment(task.date).format('DD MMMM YYYY')}
           </td>
           <td className="px-1 py-6 font-semibold text-center">
-            {task.time.toUTCString()}
+            {moment(task.date).format('LT')}
           </td>
           <td className="px-1 py-6 text-center">
             <PairButton id={task.id} />
