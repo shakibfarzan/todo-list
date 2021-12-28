@@ -34,12 +34,13 @@ const TableBody = ({ tasks }: Props): React.ReactElement => {
         <tr key={task.id} className="border-b">
           <td className="px-1 py-6 text-center">
             <input
-              className="border-2 border-gray-300 rounded focus:ring-0"
+              className="border-2 border-gray-300 rounded cursor-pointer focus:ring-0"
               type="checkbox"
               name="checkbox"
               id={`checkbox-${task.id}`}
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
               onClick={(): any => handleCheckbox(task.id)}
+              defaultChecked={task.status === 'Done' ? true : false}
             />
           </td>
           <td className="px-1 py-6 font-semibold text-center">{task.title}</td>
