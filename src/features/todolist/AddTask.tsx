@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import AddButton from '../components/AddButton';
 import moment from 'moment';
@@ -19,27 +19,42 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 const MyModal = (): React.ReactElement => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const [formData, setFormData] = React.useState<Omit<TaskType, 'id'>>({
+  const [formData, setFormData] = useState<Omit<TaskType, 'id'>>({
     title: '',
     status: 'In Progress',
     date: new Date(),
   });
 
+  const [error, setError] = useState('');
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!formData.title) {
+      setError('Title should not be empty!');
+    } else {
+      setError('');
+    }
+  }, [formData.title]);
 
   function openModal(): void {
     setIsOpen(true);
   }
 
   function closeModal(): void {
-    dispatch(taskAdded(formData));
     setIsOpen(false);
   }
 
-  const onsubmit = (): void => {
-    closeModal();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const onsubmit = (e: any): void => {
+    e.preventDefault();
+    if (formData.title) {
+      dispatch(taskAdded(formData));
+      closeModal();
+      setFormData({ title: '', status: 'In Progress', date: new Date() });
+    }
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -77,19 +92,22 @@ const MyModal = (): React.ReactElement => {
           </button>
           <form className="flex flex-col p-3 sm:w-96">
             <input
+              // eslint-disable-next-line jsx-a11y/no-autofocus
+              autoFocus
               onChange={handleChange}
               value={formData.title}
               type="text"
               name={'title'}
               id={'title'}
               placeholder={'Title*'}
-              className="mb-3 border border-gray-300 border-solid rounded-md focus:ring-green-500 focus:border-green-500"
+              className="mb-3 border border-gray-300 border-solid rounded-md focus:ring-indigo-500 focus:border-indigo-500"
             />
+            {error && <p className="mb-3 text-sm text-red-600">{error}</p>}
             <select
               onChange={handleChange}
               name={'status'}
               value={formData.status}
-              className="mb-3 border border-gray-300 border-solid rounded-md focus:ring-green-500 focus:border-green-500"
+              className="mb-3 border border-gray-300 border-solid rounded-md focus:ring-indigo-500 focus:border-indigo-500"
             >
               <option value="In Progress">In Progress</option>
               <option value="Paused">Paused</option>
@@ -97,7 +115,7 @@ const MyModal = (): React.ReactElement => {
             </select>
             <input
               onChange={handleChange}
-              className="mb-3 border border-gray-300 border-solid rounded-md focus:ring-green-500 focus:border-green-500"
+              className="mb-3 border border-gray-300 border-solid rounded-md focus:ring-indigo-500 focus:border-indigo-500"
               type="datetime-local"
               name={'date'}
               id={'datetime'}
