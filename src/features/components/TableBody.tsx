@@ -1,7 +1,8 @@
 import React from 'react';
 import EditRemoveTask from '../todolist/EditRemoveTask';
 import Badge from './Badge';
-import { TaskType } from '../todolist/tasksSlice';
+import { TaskType, taskStatusToggled } from '../todolist/tasksSlice';
+import { useDispatch } from 'react-redux';
 import moment from 'moment';
 
 interface Props {
@@ -21,16 +22,25 @@ const TableBody = ({ tasks }: Props): React.ReactElement => {
     return null;
   };
 
+  const dispatch = useDispatch();
+
+  const handleCheckbox = (id: number): void => {
+    dispatch(taskStatusToggled({ id }));
+  };
+
   return (
     <tbody>
       {tasks.map((task) => (
         <tr key={task.id} className="border-b">
           <td className="px-1 py-6 text-center">
             <input
-              className="border-2 border-gray-300 rounded focus:ring-0"
+              className="border-2 border-gray-300 rounded cursor-pointer focus:ring-0"
               type="checkbox"
               name="checkbox"
               id={`checkbox-${task.id}`}
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              onClick={(): any => handleCheckbox(task.id)}
+              defaultChecked={task.status === 'Done' ? true : false}
             />
           </td>
           <td className="px-1 py-6 font-semibold text-center">{task.title}</td>
