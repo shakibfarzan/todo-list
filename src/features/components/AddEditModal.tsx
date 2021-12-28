@@ -88,7 +88,7 @@ const AddEditModal = ({
             type="datetime-local"
             name={'date'}
             id={'datetime'}
-            value={moment(formData.date).format('yyyy-MM-DDThh:mm')}
+            value={moment(formData.date).format('yyyy-MM-DDTHH:mm')}
           />
           <button
             className="px-4 py-2 text-sm font-semibold text-white transition bg-blue-500 rounded-md hover:bg-blue-600 hover:shadow-md hover:shadow-blue-400"
