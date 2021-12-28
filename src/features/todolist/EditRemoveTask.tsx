@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { TaskType, taskEdited, getTaskById } from './tasksSlice';
+import { TaskType, taskEdited, taskRemoved, getTaskById } from './tasksSlice';
 import AddEditModal from '../components/AddEditModal';
+import RemoveModal from '../components/RemoveModal';
 
 interface Props {
   id: number;
@@ -9,7 +10,7 @@ interface Props {
 
 const EditRemoveTask = ({ id }: Props): React.ReactElement => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-
+  const [isRemoveModalOpen, setIsRemoveModalOpen] = useState(false);
   const [formData, setFormData] = useState<TaskType>({
     id: id,
     title: '',
@@ -42,8 +43,16 @@ const EditRemoveTask = ({ id }: Props): React.ReactElement => {
     setIsEditModalOpen(true);
   }
 
+  function openRemoveModal(): void {
+    setIsRemoveModalOpen(true);
+  }
+
   function closeEditModal(): void {
     setIsEditModalOpen(false);
+  }
+
+  function closeRemoveModal(): void {
+    setIsRemoveModalOpen(false);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -53,6 +62,13 @@ const EditRemoveTask = ({ id }: Props): React.ReactElement => {
       dispatch(taskEdited(formData));
       closeEditModal();
     }
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const onRemove = (e: any): void => {
+    e.preventDefault();
+    dispatch(taskRemoved(formData.id));
+    closeRemoveModal();
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -93,7 +109,10 @@ const EditRemoveTask = ({ id }: Props): React.ReactElement => {
             </g>
           </svg>
         </button>
-        <button className="p-2 transition rounded-full hover:bg-red-100">
+        <button
+          onClick={openRemoveModal}
+          className="p-2 transition rounded-full hover:bg-red-100"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="24px"
@@ -114,6 +133,11 @@ const EditRemoveTask = ({ id }: Props): React.ReactElement => {
         error={error}
         onsubmit={onEdit}
         buttonTitle={'Edit Task'}
+      />
+      <RemoveModal
+        isOpen={isRemoveModalOpen}
+        closeModal={closeRemoveModal}
+        onRemove={onRemove}
       />
     </>
   );
