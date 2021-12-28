@@ -15,7 +15,7 @@ const EditRemoveTask = ({ id }: Props): React.ReactElement => {
     id: id,
     title: '',
     status: 'In Progress',
-    date: new Date(),
+    date: new Date().toJSON(),
   });
   const [error, setError] = useState('');
   const currentTask = useSelector(getTaskById(id));
