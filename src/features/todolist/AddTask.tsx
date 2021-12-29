@@ -10,7 +10,7 @@ const AddTask = (): React.ReactElement => {
   const [formData, setFormData] = useState<Omit<TaskType, 'id'>>({
     title: '',
     status: 'In Progress',
-    date: new Date(),
+    date: new Date().toJSON(),
   });
 
   const [error, setError] = useState('');
@@ -39,7 +39,11 @@ const AddTask = (): React.ReactElement => {
     if (formData.title) {
       dispatch(taskAdded(formData));
       closeModal();
-      setFormData({ title: '', status: 'In Progress', date: new Date() });
+      setFormData({
+        title: '',
+        status: 'In Progress',
+        date: new Date().toJSON(),
+      });
     }
   };
 

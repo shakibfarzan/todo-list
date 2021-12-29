@@ -11,7 +11,7 @@ export interface TaskType {
   id: number;
   title: string;
   status: 'Paused' | 'In Progress' | 'Done';
-  date: Date;
+  date: string;
 }
 
 const initialState: TaskType[] = [];
