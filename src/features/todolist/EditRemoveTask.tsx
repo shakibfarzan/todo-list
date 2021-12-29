@@ -67,7 +67,7 @@ const EditRemoveTask = ({ id }: Props): React.ReactElement => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onRemove = (e: any): void => {
     e.preventDefault();
-    dispatch(taskRemoved(formData.id));
+    dispatch(taskRemoved({ id: id }));
     closeRemoveModal();
   };
 
