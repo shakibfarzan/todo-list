@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from 'react';
 import ButtonGroup from '../components/ButtonGroup';
@@ -6,6 +7,7 @@ import TableHeader from '../components/TableHeader';
 import { TaskType } from './tasksSlice';
 import moment from 'moment';
 import { desc, asc } from '../components/Icons';
+import _ from 'lodash';
 
 interface Props {
   tasks: TaskType[];
@@ -13,7 +15,6 @@ interface Props {
 
 const TasksTable = ({ tasks }: Props): React.ReactElement => {
   const [filterBy, setFilterBy] = useState('');
-  const [filteredTasks, setFilteredTasks] = useState<TaskType[]>([]);
   const [sortByTitle, setSortByTitle] = useState('');
   const [sortIcon, setSortIcon] = useState(desc);
   const onMonthClick = (): void => {
@@ -38,29 +39,27 @@ const TasksTable = ({ tasks }: Props): React.ReactElement => {
     }
   };
 
-  useEffect(() => {
-    if (filterBy === 'Month') {
-      setFilteredTasks(
-        tasks.filter(
-          (task) =>
-            moment(task.date).toDate().getMonth() === new Date().getMonth(),
-        ),
-      );
-    } else if (filterBy === 'Week') {
-      setFilteredTasks(
-        tasks.filter((task) => moment().diff(moment(task.date), 'weeks') === 0),
-      );
-    } else if (filterBy === 'Day') {
-      setFilteredTasks(
-        tasks.filter(
-          (task) =>
-            moment(task.date).toDate().getDate() === new Date().getDate(),
-        ),
-      );
-    } else {
-      setFilteredTasks(tasks);
-    }
-  }, [filterBy, tasks]);
+  let filteredTasks;
+  if (filterBy === 'Month') {
+    filteredTasks = tasks.filter(
+      (task) => moment(task.date).toDate().getMonth() === new Date().getMonth(),
+    );
+  } else if (filterBy === 'Week') {
+    filteredTasks = tasks.filter(
+      (task) => moment().diff(moment(task.date), 'weeks') === 0,
+    );
+  } else if (filterBy === 'Day') {
+    filteredTasks = tasks.filter(
+      (task) => moment(task.date).toDate().getDate() === new Date().getDate(),
+    );
+  } else {
+    filteredTasks = tasks;
+  }
+  if (sortByTitle === 'desc') {
+    filteredTasks = _.orderBy(filteredTasks, ['title'], 'desc');
+  } else if (sortByTitle === 'asc') {
+    filteredTasks = _.orderBy(filteredTasks, ['title'], 'asc');
+  }
 
   return (
     <div className="flex flex-col">
