@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 interface Column {
   id: number;
@@ -32,4 +32,4 @@ const TableHeader = ({ columns }: Props): React.ReactElement => {
   );
 };
 
-export default TableHeader;
+export default memo(TableHeader);

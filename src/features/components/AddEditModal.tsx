@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import Modal from 'react-modal';
 import moment from 'moment';
 import { TaskType } from '../todolist/tasksSlice';
@@ -94,4 +94,4 @@ const AddEditModal = ({
   );
 };
 
-export default AddEditModal;
+export default memo(AddEditModal);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
@@ -27,4 +27,4 @@ const MyTabs = ({ items }: Props): React.ReactElement => {
   );
 };
 
-export default MyTabs;
+export default memo(MyTabs);

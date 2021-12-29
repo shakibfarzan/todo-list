@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect } from 'react';
+import React, { useState, memo } from 'react';
 import ButtonGroup from '../components/ButtonGroup';
 import TableBody from '../components/TableBody';
 import TableHeader from '../components/TableHeader';
@@ -89,4 +88,4 @@ const TasksTable = ({ tasks }: Props): React.ReactElement => {
   );
 };
 
-export default TasksTable;
+export default memo(TasksTable, _.isEqual);
