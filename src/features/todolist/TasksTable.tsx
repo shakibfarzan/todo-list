@@ -50,7 +50,9 @@ const TasksTable = ({ tasks }: Props): React.ReactElement => {
     );
   } else if (filterBy === 'Day') {
     filteredTasks = tasks.filter(
-      (task) => moment(task.date).toDate().getDate() === new Date().getDate(),
+      (task) =>
+        moment(task.date).toDate().getMonth() === new Date().getMonth() &&
+        moment(task.date).toDate().getDate() === new Date().getDate(),
     );
   } else {
     filteredTasks = tasks;
