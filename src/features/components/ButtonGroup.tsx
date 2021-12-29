@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 interface Item {
   title: string;
@@ -22,7 +22,7 @@ const ButtonGroup = ({ items }: Props): React.ReactElement => {
 
   return (
     <div
-      className="inline-flex rounded-md shadow self-end mt-4 mb-8"
+      className="inline-flex self-end mt-4 mb-8 rounded-md shadow"
       role="group"
     >
       {items.map((item, index) => (
@@ -38,4 +38,4 @@ const ButtonGroup = ({ items }: Props): React.ReactElement => {
   );
 };
 
-export default ButtonGroup;
+export default memo(ButtonGroup);

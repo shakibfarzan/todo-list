@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import Modal from 'react-modal';
 import { close } from './Icons';
 interface Props {
@@ -57,4 +57,4 @@ const RemoveModal = ({
   );
 };
 
-export default RemoveModal;
+export default memo(RemoveModal);

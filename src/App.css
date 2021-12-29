@@ -1,0 +1,20 @@
+.react-tabs__tab-list{
+    border-color: #d5d5d5 !important;
+}
+
+.react-tabs__tab--selected{
+    border-color: #d5d5d5 !important;
+}
+
+.react-tabs__tab{
+    color: #8d8d8d !important;
+    font-size: small;
+    font-weight: 700;
+    padding-inline: 2rem !important;
+    border-radius: 5px 5px 0 0;
+    margin-right: 1px;
+}
+
+.react-tabs__tab.react-tabs__tab--selected{
+    color: rgb(33 142 255) !important;
+}

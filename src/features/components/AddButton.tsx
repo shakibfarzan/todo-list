@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react';
+import React, { MouseEventHandler, memo } from 'react';
 import { add } from './Icons';
 
 interface Props {
@@ -19,4 +19,4 @@ const AddButton = ({ onClick }: Props): React.ReactElement => {
   );
 };
 
-export default AddButton;
+export default memo(AddButton);
