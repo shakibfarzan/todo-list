@@ -5,6 +5,7 @@ import TableBody from '../components/TableBody';
 import TableHeader from '../components/TableHeader';
 import { TaskType } from './tasksSlice';
 import moment from 'moment';
+import { desc, asc } from '../components/Icons';
 
 interface Props {
   tasks: TaskType[];
@@ -14,6 +15,7 @@ const TasksTable = ({ tasks }: Props): React.ReactElement => {
   const [filterBy, setFilterBy] = useState('');
   const [filteredTasks, setFilteredTasks] = useState<TaskType[]>([]);
   const [sortByTitle, setSortByTitle] = useState('');
+  const [sortIcon, setSortIcon] = useState(desc);
   const onMonthClick = (): void => {
     setFilterBy('Month');
   };
@@ -29,8 +31,10 @@ const TasksTable = ({ tasks }: Props): React.ReactElement => {
   const onSort = (): void => {
     if (sortByTitle === 'asc') {
       setSortByTitle('desc');
+      setSortIcon(desc);
     } else {
       setSortByTitle('asc');
+      setSortIcon(asc);
     }
   };
 
@@ -70,7 +74,7 @@ const TasksTable = ({ tasks }: Props): React.ReactElement => {
       <table className="w-full mt-5">
         <TableHeader
           columns={[
-            { id: 1, title: '', onClick: (): any => onSort() },
+            { id: 1, title: sortIcon, onClick: (): any => onSort() },
             { id: 2, title: 'Tasks' },
             { id: 3, title: 'Status' },
             { id: 4, title: 'Date' },
